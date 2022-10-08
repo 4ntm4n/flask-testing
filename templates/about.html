@@ -3,7 +3,7 @@
 {% block content %}
 
 
- {{ company[1]["name"] }}
+{{ company[1]["name"] }}
 
 <h2>About Page</h2>
 <p>
@@ -18,39 +18,38 @@
 
 {% for member in company %}
 
-    <div class="row featurette">
+<div class="row featurette">
 
-        {% if loop.index % 2 != 0 %}    
-            <div class="col-md-7">
-                <h3> {{ loop.index }}. {{ member.name }} </h3>
-                <p>
-                {{ member.description }} 
-                </p>
-            </div>
-            <div class="col-md-5">
-                <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
-            </div>
-        
-        {% else %}
-        <div class="col-md-5">
-            <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
-        </div>    
-        <div class="col-md-7">
-            <h3> {{ loop.index }}. {{ member.name }} </h3>
-            <p>
-            {{ member.description }} 
-            </p>
-        </div>  
-        {% endif %}   
+    {% if loop.index % 2 != 0 %}
+    <div class="col-md-7">
+        <h3> {{ loop.index }}. <a href="/about/{{ member.url }}">{{ member.name }}</a> </h3>
+        <p>
+            {{ member.description }}
+        </p>
     </div>
-    
-    {% if loop.index != loop.length %}
-        <hr class="featurette-divider"> 
-    {% endif %}
+    <div class="col-md-5">
+        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+    </div>
 
-    
+    {% else %}
+    <div class="col-md-5">
+        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+    </div>
+    <div class="col-md-7">
+        <h3> {{ loop.index }}. <a href="/about/{{ member.url }}">{{ member.name }}</a> </h3>
+        <p>
+            {{ member.description }}
+        </p>
+    </div>
+    {% endif %}
+</div>
+
+{% if loop.index != loop.length %}
+<hr class="featurette-divider">
+{% endif %}
+
+
 
 {% endfor %}
 
 {% endblock %}
-
